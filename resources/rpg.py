@@ -18,6 +18,11 @@ if(quer_jogar.lower() == "sim"):
     print("*                               (2): 2 Jogadores  (4): 4 Jogadores                                   *")
     print("*                               (3): 3 Jogadores  (5): 5 Jogadores                                   *")
     print("*                                                                                          (1): Sair *")
+    print("*----------------------------------------------------------------------------------------------------*")
+    print("*                                               Regras                                               *")
+    print("* 1) Digite o nome dos jogadores                                                                     *")
+    print("* 2) Escolha os personagens                                                                          *")
+    print("* 3) Os dois melhores jogadores, se enfrentam na final                                               *")
     print("******************************************************************************************************")
 
 
@@ -86,3 +91,83 @@ if(quer_jogar.lower() == "sim"):
     print()
     for i in range(len(jogadores)):
         print("Otima escolha {0}, você agora é um {1}".format(jogadores[i].title(), escolhas[jogadores[i]]))
+
+
+    print()
+
+    print(" Ha muito tempo, um necromante muito poderoso chamado Tarzariuz que tinha um conhecimento muito maior que")
+    print("qualquer outro necromante ou mago já existente na terra estava no caminho de se tornar um Lich e dar ")
+    print("continuação a suas pesquisas malévolas. Então ele pediu a ajuda de seus três discípulos para auxiliá-lo ")
+    print("no ritual de transformação, Kanin, Trasdan e o mais poderoso dos três, Dantis deixando assim sua filactéria")
+    print("imune a ataques magico e imune a ataques físicos. Juntos completaram o ritual.")
+    print(" O mundo caiu em trevas , e assim iniciou uma batalha pelo poder ,o primeiro a conquitar o titulo seria o rei")
+    print("com o poder de mudar o mundo para melhor")
+
+    print()
+
+
+    if(numero_jogadores == 2):
+
+        print("******************************************************************************************************")
+        print("*                                          Tabela Lutas                                              *")
+        print("******************************************************************************************************")
+        print(" luta 1                                {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[1].title(),escolhas[jogadores[1]]))
+
+    elif(numero_jogadores == 3):
+
+        print("******************************************************************************************************")
+        print("*                                          Tabela Lutas                                              *")
+        print("******************************************************************************************************")
+        print(" luta 1                                {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[1].title(),escolhas[jogadores[1]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 2                                {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[2].title(),escolhas[jogadores[2]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 3                                {0}({1}) x {2}({3})".format(jogadores[1].title(),escolhas[jogadores[1]],jogadores[2].title(),escolhas[jogadores[2]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" final                                Ganhador 1 x Ganhador 2")
+
+    elif(numero_jogadores == 4):
+
+        print("******************************************************************************************************")
+        print("*                                          Tabela Lutas                                              *")
+        print("******************************************************************************************************")
+        print(" luta 1                                {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[1].title(),escolhas[jogadores[1]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 2                                {0}({1}) x {2}({3})".format(jogadores[2].title(),escolhas[jogadores[2]],jogadores[3].title(),escolhas[jogadores[3]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 3                                {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[2].title(),escolhas[jogadores[2]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 4                                {0}({1}) x {2}({3})".format(jogadores[1].title(),escolhas[jogadores[1]],jogadores[3].title(),escolhas[jogadores[3]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 5                                {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[3].title(),escolhas[jogadores[3]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 6                                {0}({1}) x {2}({3})".format(jogadores[1].title(),escolhas[jogadores[1]],jogadores[2].title(),escolhas[jogadores[2]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" final                                Ganhador 1 x Ganhador 2")
+
+    elif(numero_jogadores == 5):
+
+        print("******************************************************************************************************")
+        print("*                                          Tabela Lutas                                              *")
+        print("******************************************************************************************************")
+        print(" luta 1                                {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[1].title(),escolhas[jogadores[1]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 2                                {0}({1}) x {2}({3})".format(jogadores[2].title(),escolhas[jogadores[2]],jogadores[3].title(),escolhas[jogadores[3]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 3                                {0}({1}) x {2}({3})".format(jogadores[4].title(),escolhas[jogadores[4]],jogadores[0].title(),escolhas[jogadores[0]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 4                                {0}({1}) x {2}({3})".format(jogadores[1].title(),escolhas[jogadores[1]],jogadores[2].title(),escolhas[jogadores[2]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 5                                {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[3].title(),escolhas[jogadores[3]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 6                                {0}({1}) x {2}({3})".format(jogadores[4].title(),escolhas[jogadores[4]],jogadores[2].title(),escolhas[jogadores[2]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 7                                {0}({1}) x {2}({3})".format(jogadores[1].title(),escolhas[jogadores[1]],jogadores[3].title(),escolhas[jogadores[3]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 8                                {0}({1}) x {2}({3})".format(jogadores[2].title(),escolhas[jogadores[2]],jogadores[0].title(),escolhas[jogadores[0]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 9                                {0}({1}) x {2}({3})".format(jogadores[1].title(),escolhas[jogadores[1]],jogadores[4].title(),escolhas[jogadores[4]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" luta 10                               {0}({1}) x {2}({3})".format(jogadores[4].title(),escolhas[jogadores[4]],jogadores[3].title(),escolhas[jogadores[3]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print(" final                                Ganhador 1 x Ganhador 2")
