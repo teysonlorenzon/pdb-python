@@ -1,0 +1,48 @@
+5 jogadores
+
+classes{
+    Warrior
+    Sorcerer
+    Archer
+    Druid
+}
+
+ataques{
+    Warrior : fisico
+    Sorcerer : raio,fogo
+    Archer : fisico,veneno
+    Druid : gelo,veneno
+}
+
+criticos{
+    Warrior : 60%
+    Sorcerer : 30%
+    Archer : 50%
+    Druid: 30%
+}
+
+dano{
+    Warrior : 20 + skill
+    Sorcerer : 20 + skill
+    Archer : 20 + Skill
+    Druid : 20 + skill
+}
+
+skill{
+    Warrior :  massacre, desafio da morte, carga concentrada
+    Sorcerer : bola de fogo, relampago, ultra colapso
+    Archer :  flexa critica ,flexa envenenada, flexa da morte
+    Druid : cajado de veneno, chuva de gelo, morte lenta
+}
+
+atributos{
+    vida
+    mana
+}
+
+*cada personagem escolhe uma classe 
+*para se enfrentar no campo de batalha
+*os dois personagens lutam até a morte
+*cada habilidade tem um custo de mana
+
+
