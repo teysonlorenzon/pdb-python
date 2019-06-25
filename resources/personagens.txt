@@ -1,4 +1,4 @@
-Princesa Andromeda
-Guerreiro de Espadas
-Ninja
-Mestre dos Magos
+Guerreiro
+Mago
+Arqueiro
+Druida
