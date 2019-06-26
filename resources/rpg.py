@@ -80,6 +80,22 @@ if(quer_jogar.lower() == "sim"):
         lista_personagens[3] : ["Fisico", "Cajado de veneno", "Chuva de gelo", "Morte lenta"]
     }
 
+    dano = {
+        "Fisico": 5,
+        "Massacre": 10,
+        "Desafio da morte": 10,
+        "Carga concentrada": 10,
+        "Bola de fogo": 10,
+        "Relampago": 10,
+        "Ultra colapso": 10,
+        "Flexa critica": 10,
+        "Flexa envenenada": 10,
+        "Flexa da morte": 10,
+        "Cajado de veneno": 10,
+        "Chuva de gelo": 10,
+        "Morte lenta": 10
+    }
+
 
     for i in range(len(jogadores)):
         numero_lutador = int(input("{0}, escolha um numero referente ao perssonagem(1 a 4): ".format(jogadores[i].title())))
@@ -130,8 +146,10 @@ if(quer_jogar.lower() == "sim"):
         print("******************************************************************************************************")
         print("*                                          Tabela Lutas                                              *")
         print("******************************************************************************************************")
+        print()
         print(" luta 1                                {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[1].title(),escolhas[jogadores[1]]))
-
+        print()
+        print("******************************************************************************************************")
         print()
         print("Batalha - {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[1].title(),escolhas[jogadores[1]]))
         count = 1
@@ -148,7 +166,7 @@ if(quer_jogar.lower() == "sim"):
         print()
 
 
-        while(vida[jogadores[0]] != 0 or vida[jogadores[1]] != 0):
+        while(vida[jogadores[0]] >= 0 or vida[jogadores[1]] >= 0):
 
             print("------------------------------------------------------------------------------------------------------")
             print("Escolha uma opção de ataque para causar dano ao {0}".format(escolhas[jogadores[1]].title()))
@@ -165,7 +183,7 @@ if(quer_jogar.lower() == "sim"):
 
             if (ataque_jogador_um > 0 and "utilizado" not in poder_jogador_um[ataque_jogador_um]):
                 gurdar_ataque_jogador_um.append(ataque_jogador_um)
-                poder_jogador_um.insert(ataque_jogador_um,"utilizado")
+                poder_jogador_um.insert(ataque_jogador_um,"Utilizado")
 
 
             print()
@@ -184,16 +202,10 @@ if(quer_jogar.lower() == "sim"):
 
             if(ataque_jogador_dois > 0 and "utilizado" not in poder_jogador_dois[ataque_jogador_dois]):
                 gurdar_ataque_jogador_dois.append(ataque_jogador_dois)
-                poder_jogador_dois.insert(ataque_jogador_dois,"utilizado")
+                poder_jogador_dois.insert(ataque_jogador_dois,"Utilizado")
 
             print("------------------------------------------------------------------------------------------------------")
             print()
-
-
-
-
-
-
 
 
 
@@ -202,6 +214,7 @@ if(quer_jogar.lower() == "sim"):
         print("******************************************************************************************************")
         print("*                                          Tabela Lutas                                              *")
         print("******************************************************************************************************")
+        print()
         print(" luta 1                                {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[1].title(),escolhas[jogadores[1]]))
         print("------------------------------------------------------------------------------------------------------")
         print(" luta 2                                {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[2].title(),escolhas[jogadores[2]]))
@@ -209,6 +222,92 @@ if(quer_jogar.lower() == "sim"):
         print(" luta 3                                {0}({1}) x {2}({3})".format(jogadores[1].title(),escolhas[jogadores[1]],jogadores[2].title(),escolhas[jogadores[2]]))
         print("------------------------------------------------------------------------------------------------------")
         print(" final                                Ganhador 1 x Ganhador 2")
+        print()
+        print("******************************************************************************************************")
+
+        contador = 1
+
+
+        sequencia_lutas = {
+            1: 0,
+            2: 0,
+            3: 1,
+            4: 1,
+            5: 2,
+            6: 2
+        }
+
+        contra_x = 0
+        contra_y = 3
+        while(contador <= 4):
+            contra_x += 1
+            contra_y += 1
+
+            print("******************************************************************************************************")
+            print("*                                          Tabela Lutas                                              *")
+            print("******************************************************************************************************")
+            print()
+            print(" luta {0}                                {1}({2}) x {3}({4})".format(contador,jogadores[sequencia_lutas[contra_x]].title(),escolhas[jogadores[sequencia_lutas[contra_x]]],jogadores[sequencia_lutas[contra_y]].title(),escolhas[jogadores[sequencia_lutas[contra_y]]]))
+            print()
+            print("******************************************************************************************************")
+            print()
+            print("Batalha - {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[1].title(),escolhas[jogadores[1]]))
+
+            print("Batalha {0}".format(contador))
+            print("Lutem!")
+
+            poder_jogador_um = poderes[escolhas[jogadores[0]]]
+            poder_jogador_dois = poderes[escolhas[jogadores[1]]]
+
+            gurdar_ataque_jogador_um = []
+            gurdar_ataque_jogador_dois = []
+
+            print()
+
+            while(vida[jogadores[0]] >= 0 or vida[jogadores[1]] >= 0):
+
+                print("------------------------------------------------------------------------------------------------------")
+                print("Escolha uma opção de ataque para causar dano ao {0}".format(escolhas[jogadores[1]].title()))
+                print()
+                print("1){0} 2){1} 3){2} 4){3} ".format(poder_jogador_um[0],poder_jogador_um[1],poder_jogador_um[2],poder_jogador_um[3]))
+                print()
+
+                ataque_jogador_um = int(input("{0} digite um numero referente ao ataque: ".format(jogadores[0].title())))
+                ataque_jogador_um = ataque_jogador_um - 1
+
+                while (ataque_jogador_um in gurdar_ataque_jogador_um):
+                    ataque_jogador_um = int(input("{0} digite um ataque disonivel: ".format(jogadores[0].title())))
+                    ataque_jogador_um = ataque_jogador_um - 1
+
+                if (ataque_jogador_um > 0 and "utilizado" not in poder_jogador_um[ataque_jogador_um]):
+                    gurdar_ataque_jogador_um.append(ataque_jogador_um)
+                    poder_jogador_um.insert(ataque_jogador_um,"Utilizado")
+
+
+                print()
+
+                print("Escolha uma opção de ataque para causar dano ao {0}".format(escolhas[jogadores[0]].title()))
+                print()
+                print("1){0} 2){1} 3){2} 4){3} ".format(poder_jogador_dois[0],poder_jogador_dois[1],poder_jogador_dois[2],poder_jogador_dois[3]))
+                print()
+
+                ataque_jogador_dois = int(input("{0} digite um numero referente ao ataque: ".format(jogadores[1].title())))
+                ataque_jogador_dois = ataque_jogador_dois - 1
+
+                while(ataque_jogador_dois in gurdar_ataque_jogador_dois):
+                    ataque_jogador_dois = int(input("{0} digite um ataque disonivel: ".format(jogadores[1].title())))
+                    ataque_jogador_dois = ataque_jogador_dois - 1
+
+                if(ataque_jogador_dois > 0 and "utilizado" not in poder_jogador_dois[ataque_jogador_dois]):
+                    gurdar_ataque_jogador_dois.append(ataque_jogador_dois)
+                    poder_jogador_dois.insert(ataque_jogador_dois,"Utilizado")
+
+                print("------------------------------------------------------------------------------------------------------")
+                print()
+
+
+            contador +=1
+
 
     elif(numero_jogadores == 4):
 
@@ -226,8 +325,105 @@ if(quer_jogar.lower() == "sim"):
         print(" luta 5                                {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[3].title(),escolhas[jogadores[3]]))
         print("------------------------------------------------------------------------------------------------------")
         print(" luta 6                                {0}({1}) x {2}({3})".format(jogadores[1].title(),escolhas[jogadores[1]],jogadores[2].title(),escolhas[jogadores[2]]))
-        print("------------------------------------------------------------------------------------------------------")
-        print(" final                                Ganhador 1 x Ganhador 2")
+        print()
+        print("******************************************************************************************************")
+
+        contador = 1
+
+        sequencia_lutas = {
+            1: 0,
+            2: 2,
+            3: 0,
+            4: 1,
+            5: 0,
+            6: 1,
+            7: 1,
+            8: 3,
+            9: 2,
+            10: 3,
+            11: 3,
+            12: 2
+        }
+
+        contra_x = 0
+        contra_y = 6
+        while (contador <= 6):
+            contra_x += 1
+            contra_y += 1
+
+            print(
+                "******************************************************************************************************")
+            print(
+                "*                                          Tabela Lutas                                              *")
+            print(
+                "******************************************************************************************************")
+            print()
+            print(" luta {0}                                {1}({2}) x {3}({4})".format(contador, jogadores[sequencia_lutas[contra_x]].title(), escolhas[jogadores[sequencia_lutas[contra_x]]], jogadores[sequencia_lutas[contra_y]].title(),escolhas[jogadores[sequencia_lutas[contra_y]]]))
+            print()
+            print(
+                "******************************************************************************************************")
+            print()
+            print("Batalha - {0}({1}) x {2}({3})".format(jogadores[0].title(), escolhas[jogadores[0]], jogadores[1].title(), escolhas[jogadores[1]]))
+
+            print("Batalha {0}".format(contador))
+            print("Lutem!")
+
+            poder_jogador_um = poderes[escolhas[jogadores[0]]]
+            poder_jogador_dois = poderes[escolhas[jogadores[1]]]
+
+            gurdar_ataque_jogador_um = []
+            gurdar_ataque_jogador_dois = []
+
+            print()
+
+
+            while (vida[jogadores[0]] >= 0 or vida[jogadores[1]] >= 0):
+
+                print(
+                    "------------------------------------------------------------------------------------------------------")
+                print("Escolha uma opção de ataque para causar dano ao {0}".format(escolhas[jogadores[1]].title()))
+                print()
+                print("1){0} 2){1} 3){2} 4){3} ".format(poder_jogador_um[0], poder_jogador_um[1], poder_jogador_um[2], poder_jogador_um[3]))
+                print()
+
+                ataque_jogador_um = int(
+                    input("{0} digite um numero referente ao ataque: ".format(jogadores[0].title())))
+                ataque_jogador_um = ataque_jogador_um - 1
+
+                while (ataque_jogador_um in gurdar_ataque_jogador_um):
+                    ataque_jogador_um = int(input("{0} digite um ataque disonivel: ".format(jogadores[0].title())))
+                    ataque_jogador_um = ataque_jogador_um - 1
+
+                if (ataque_jogador_um > 0 and "utilizado" not in poder_jogador_um[ataque_jogador_um]):
+                    gurdar_ataque_jogador_um.append(ataque_jogador_um)
+                    poder_jogador_um.insert(ataque_jogador_um, "Utilizado")
+
+                print()
+
+                print("Escolha uma opção de ataque para causar dano ao {0}".format(escolhas[jogadores[0]].title()))
+                print()
+                print("1){0} 2){1} 3){2} 4){3} ".format(poder_jogador_dois[0], poder_jogador_dois[1],poder_jogador_dois[2], poder_jogador_dois[3]))
+                print()
+
+                ataque_jogador_dois = int(
+                    input("{0} digite um numero referente ao ataque: ".format(jogadores[1].title())))
+                ataque_jogador_dois = ataque_jogador_dois - 1
+
+                while (ataque_jogador_dois in gurdar_ataque_jogador_dois):
+                    ataque_jogador_dois = int(input("{0} digite um ataque disonivel: ".format(jogadores[1].title())))
+                    ataque_jogador_dois = ataque_jogador_dois - 1
+
+                if (ataque_jogador_dois > 0 and "utilizado" not in poder_jogador_dois[ataque_jogador_dois]):
+                    gurdar_ataque_jogador_dois.append(ataque_jogador_dois)
+                    poder_jogador_dois.insert(ataque_jogador_dois, "Utilizado")
+
+                print(
+                    "------------------------------------------------------------------------------------------------------")
+                print()
+
+
+            contador += 1
+
 
     elif(numero_jogadores == 5):
 
@@ -255,3 +451,106 @@ if(quer_jogar.lower() == "sim"):
         print(" luta 10                               {0}({1}) x {2}({3})".format(jogadores[4].title(),escolhas[jogadores[4]],jogadores[3].title(),escolhas[jogadores[3]]))
         print("------------------------------------------------------------------------------------------------------")
         print(" final                                Ganhador 1 x Ganhador 2")
+        print()
+        print("******************************************************************************************************")
+
+        contador = 1
+
+        sequencia_lutas = {
+            1: 0,
+            2: 2,
+            3: 4,
+            4: 1,
+            5: 0,
+            6: 4,
+            7: 1,
+            8: 2,
+            9: 1,
+            10: 1,
+            11: 3,
+            12: 0,
+            13: 2,
+            14: 3,
+            15: 2,
+            16: 3,
+            17: 0,
+            18: 4,
+            19: 3
+        }
+
+        contra_x = 0
+        contra_y = 10
+        while (contador <= 10):
+            contra_x += 1
+            contra_y += 1
+
+            print(
+                "******************************************************************************************************")
+            print(
+                "*                                          Tabela Lutas                                              *")
+            print(
+                "******************************************************************************************************")
+            print()
+            print(" luta {0}                                {1}({2}) x {3}({4})".format(contador, jogadores[sequencia_lutas[contra_x]].title(), escolhas[jogadores[sequencia_lutas[contra_x]]], jogadores[sequencia_lutas[contra_y]].title(),escolhas[jogadores[sequencia_lutas[contra_y]]]))
+            print()
+            print(
+                "******************************************************************************************************")
+            print()
+            print("Batalha - {0}({1}) x {2}({3})".format(jogadores[0].title(), escolhas[jogadores[0]],jogadores[1].title(), escolhas[jogadores[1]]))
+
+            print("Batalha {0}".format(contador))
+            print("Lutem!")
+
+            poder_jogador_um = poderes[escolhas[jogadores[0]]]
+            poder_jogador_dois = poderes[escolhas[jogadores[1]]]
+
+            gurdar_ataque_jogador_um = []
+            gurdar_ataque_jogador_dois = []
+
+            print()
+
+            while (vida[jogadores[0]] >= 0 or vida[jogadores[1]] >= 0):
+
+                print(
+                    "------------------------------------------------------------------------------------------------------")
+                print("Escolha uma opção de ataque para causar dano ao {0}".format(escolhas[jogadores[1]].title()))
+                print()
+                print("1){0} 2){1} 3){2} 4){3} ".format(poder_jogador_um[0], poder_jogador_um[1], poder_jogador_um[2],poder_jogador_um[3]))
+                print()
+
+                ataque_jogador_um = int(
+                    input("{0} digite um numero referente ao ataque: ".format(jogadores[0].title())))
+                ataque_jogador_um = ataque_jogador_um - 1
+
+                while (ataque_jogador_um in gurdar_ataque_jogador_um):
+                    ataque_jogador_um = int(input("{0} digite um ataque disonivel: ".format(jogadores[0].title())))
+                    ataque_jogador_um = ataque_jogador_um - 1
+
+                if (ataque_jogador_um > 0 and "utilizado" not in poder_jogador_um[ataque_jogador_um]):
+                    gurdar_ataque_jogador_um.append(ataque_jogador_um)
+                    poder_jogador_um.insert(ataque_jogador_um, "Utilizado")
+
+                print()
+
+                print("Escolha uma opção de ataque para causar dano ao {0}".format(escolhas[jogadores[0]].title()))
+                print()
+                print("1){0} 2){1} 3){2} 4){3} ".format(poder_jogador_dois[0], poder_jogador_dois[1],poder_jogador_dois[2], poder_jogador_dois[3]))
+                print()
+
+                ataque_jogador_dois = int(
+                    input("{0} digite um numero referente ao ataque: ".format(jogadores[1].title())))
+                ataque_jogador_dois = ataque_jogador_dois - 1
+
+                while (ataque_jogador_dois in gurdar_ataque_jogador_dois):
+                    ataque_jogador_dois = int(input("{0} digite um ataque disonivel: ".format(jogadores[1].title())))
+                    ataque_jogador_dois = ataque_jogador_dois - 1
+
+                if (ataque_jogador_dois > 0 and "utilizado" not in poder_jogador_dois[ataque_jogador_dois]):
+                    gurdar_ataque_jogador_dois.append(ataque_jogador_dois)
+                    poder_jogador_dois.insert(ataque_jogador_dois, "Utilizado")
+
+                print(
+                    "------------------------------------------------------------------------------------------------------")
+                print()
+
+            contador += 1
