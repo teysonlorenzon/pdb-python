@@ -1,3 +1,5 @@
+import random
+
 #menu Principal
 
 quer_jogar = input("Deseja iniciar o jogo King's Game? (sim/nao): ")
@@ -74,10 +76,10 @@ if(quer_jogar.lower() == "sim"):
     vida = {}
 
     poderes = {
-        lista_personagens[0] : ["Fisico", "Massacre", "Desafio da morte", "Carga concentrada"],
-        lista_personagens[1] : ["Fisico", "Bola de fogo", "Relampago", "Ultra colapso"],
-        lista_personagens[2] : ["Fisico", "Flexa critica" ,"Flexa envenenada", "Flexa da morte"],
-        lista_personagens[3] : ["Fisico", "Cajado de veneno", "Chuva de gelo", "Morte lenta"]
+        lista_personagens[0]: "Fisico,Massacre,Desafio da morte,Carga concentrada",
+        lista_personagens[1]: "Fisico,Bola de fogo,Relampago,Ultra colapso",
+        lista_personagens[2]: "Fisico,Flexa critica,Flexa envenenada,Flexa da morte",
+        lista_personagens[3]: "Fisico,Cajado de veneno,Chuva de gelo,Morte lenta"
     }
 
     dano = {
@@ -105,22 +107,22 @@ if(quer_jogar.lower() == "sim"):
             lutador = lista_personagens[0]
             escolhas[jogadores[i]] = lutador
             pontos[jogadores[i]] = 0
-            vida[jogadores[i]] = 100
+            vida[jogadores[i]] = 70
         elif (numero_lutador == 2):
             lutador = lista_personagens[2]
             escolhas[jogadores[i]] = lutador
             pontos[jogadores[i]] = 0
-            vida[jogadores[i]] = 100
+            vida[jogadores[i]] = 70
         elif (numero_lutador == 3):
             lutador = lista_personagens[1]
             escolhas[jogadores[i]] = lutador
             pontos[jogadores[i]] = 0
-            vida[jogadores[i]] = 100
+            vida[jogadores[i]] = 70
         elif (numero_lutador == 4):
             lutador = lista_personagens[3]
             escolhas[jogadores[i]] = lutador
             pontos[jogadores[i]] = 0
-            vida[jogadores[i]] = 100
+            vida[jogadores[i]] = 70
 
 
     print()
@@ -157,17 +159,27 @@ if(quer_jogar.lower() == "sim"):
         print("Batalha {0}".format(count))
         print("Lutem!")
 
-        poder_jogador_um = poderes[escolhas[jogadores[0]]]
-        poder_jogador_dois = poderes[escolhas[jogadores[1]]]
+
+
+
+
+        poder_jogador_um = poderes[escolhas[jogadores[0]]].split(",")
+        poder_jogador_dois = poderes[escolhas[jogadores[1]]].split(",")
+
+
 
         gurdar_ataque_jogador_um = []
         gurdar_ataque_jogador_dois = []
 
+        pontos_de_vida_um = 1
+        pontos_de_vida_dois = 1
+
+        termina = 1
+
         print()
 
 
-        while(vida[jogadores[0]] >= 0 or vida[jogadores[1]] >= 0):
-
+        while(termina != 0):
             print("------------------------------------------------------------------------------------------------------")
             print("Escolha uma opção de ataque para causar dano ao {0}".format(escolhas[jogadores[1]].title()))
             print()
@@ -178,21 +190,53 @@ if(quer_jogar.lower() == "sim"):
             ataque_jogador_um = ataque_jogador_um - 1
 
             while (ataque_jogador_um in gurdar_ataque_jogador_um):
-                ataque_jogador_um = int(input("{0} digite um ataque disonivel: ".format(jogadores[0].title())))
+                ataque_jogador_um = int(input("{0} digite um ataque disponivel: ".format(jogadores[0].title())))
                 ataque_jogador_um = ataque_jogador_um - 1
 
 
+            ataque = poder_jogador_um[ataque_jogador_um]
+
+            dano_jogador_um = dano[ataque]
+            vida_jogador_dois = vida[jogadores[1]]
+            dano_critico = 0
+
+            if(ataque == poder_jogador_um[0]):
+                critico = random.randint(1, 20)
+                if (critico > 18):
+                    dano_critico = dano_jogador_um + 10
+                    vida[jogadores[1]] = vida_jogador_dois - dano_critico
+                else:
+                    vida[jogadores[1]] = vida_jogador_dois - dano_jogador_um
 
 
-
-
-
-
-
-
-            if (ataque_jogador_um > 0 and "utilizado" not in poder_jogador_um[ataque_jogador_um]):
+            if (ataque_jogador_um > 0 and "Utilizado" not in poder_jogador_um[ataque_jogador_um]):
                 gurdar_ataque_jogador_um.append(ataque_jogador_um)
-                poder_jogador_um.insert(ataque_jogador_um,"Utilizado")
+
+                if (ataque == poder_jogador_um[1]):
+                    critico = random.randint(1, 20)
+                    if (critico > 16):
+                        dano_critico = dano_jogador_um + 10
+                        vida[jogadores[1]] = vida_jogador_dois - dano_critico
+                    else:
+                        vida[jogadores[1]] = vida_jogador_dois - dano_jogador_um
+
+                elif (ataque == poder_jogador_um[2]):
+                    critico = random.randint(1, 20)
+                    if (critico > 12):
+                        dano_critico = dano_jogador_um + 10
+                        vida[jogadores[1]] = vida_jogador_dois - dano_critico
+                    else:
+                        vida[jogadores[1]] = vida_jogador_dois - dano_jogador_um
+
+                elif (ataque == poder_jogador_um[3]):
+                    critico = random.randint(1, 20)
+                    if (critico > 10):
+                        dano_critico = dano_jogador_um + 10
+                        vida[jogadores[1]] = vida_jogador_dois - dano_critico
+                    else:
+                        vida[jogadores[1]] = vida_jogador_dois - dano_jogador_um
+
+                poder_jogador_um[ataque_jogador_um] = "Utilizado"
 
 
             print()
@@ -209,12 +253,92 @@ if(quer_jogar.lower() == "sim"):
                 ataque_jogador_dois = int(input("{0} digite um ataque disonivel: ".format(jogadores[1].title())))
                 ataque_jogador_dois = ataque_jogador_dois - 1
 
-            if(ataque_jogador_dois > 0 and "utilizado" not in poder_jogador_dois[ataque_jogador_dois]):
+            ataque = poder_jogador_dois[ataque_jogador_dois]
+
+            dano_jogador_dois = dano[ataque]
+            vida_jogador_um = vida[jogadores[0]]
+            dano_critico = 0
+
+            if(ataque == poder_jogador_dois[0]):
+                critico = random.randint(1, 20)
+                if (critico > 18):
+                    dano_critico = dano_jogador_um + 10
+                    vida[jogadores[0]] = vida_jogador_um - dano_critico
+                else:
+                    vida[jogadores[0]] = vida_jogador_um - dano_jogador_dois
+
+
+            if (ataque_jogador_dois > 0 and "Utilizado" not in poder_jogador_dois[ataque_jogador_dois]):
                 gurdar_ataque_jogador_dois.append(ataque_jogador_dois)
-                poder_jogador_dois.insert(ataque_jogador_dois,"Utilizado")
+
+                if (ataque == poder_jogador_dois[1]):
+                    critico = random.randint(1, 20)
+                    if (critico > 16):
+                        dano_critico = dano_jogador_um + 10
+                        vida[jogadores[0]] = vida_jogador_um - dano_critico
+                    else:
+                        vida[jogadores[0]] = vida_jogador_um - dano_jogador_dois
+
+                elif (ataque == poder_jogador_dois[2]):
+                    critico = random.randint(1, 20)
+                    if (critico > 12):
+                        dano_critico = dano_jogador_um + 10
+                        vida[jogadores[0]] = vida_jogador_um - dano_critico
+                    else:
+                        vida[jogadores[0]] = vida_jogador_um - dano_jogador_dois
+
+                elif (ataque == poder_jogador_dois[3]):
+                    critico = random.randint(1, 20)
+                    if (critico > 10):
+                        dano_critico = dano_jogador_um + 10
+                        vida[jogadores[0]] = vida_jogador_um - dano_critico
+                    else:
+                        vida[jogadores[0]] = vida_jogador_um - dano_jogador_dois
+
+                poder_jogador_dois[ataque_jogador_dois] = "Utilizado"
+
+            pontos_de_vida_um = vida[jogadores[0]]
+            pontos_de_vida_dois = vida[jogadores[1]]
+
+            if(pontos_de_vida_um <= 0 and pontos_de_vida_dois <=0):
+                pontos_de_vida_um = 0
+                pontos_de_vida_dois = 0
+                termina = 0
+            if(pontos_de_vida_um <= 0):
+                pontos[jogadores[1]] = 100
+                pontos_de_vida_um = 0
+                termina = 0
+            if (pontos_de_vida_dois <= 0):
+                pontos[jogadores[0]] = 100
+                pontos_de_vida_dois = 0
+                termina = 0
 
             print("------------------------------------------------------------------------------------------------------")
             print()
+            print("Vida {0}: {1} | Vida {2}: {3}".format(jogadores[0].title(),pontos_de_vida_um,jogadores[1].title(),pontos_de_vida_dois))
+            print()
+
+        print()
+
+        maior = 0
+        vencedor = ""
+        ver = 0
+        for i in range(len(jogadores)):
+            maior = pontos[jogadores[i]]
+            vencedor = jogadores[i]
+            print("{0}, Pontos: {1}".format(jogadores[i].title(),pontos[jogadores[i]]))
+            if(pontos[jogadores[i]] > maior):
+                maior = pontos[jogadores[i]]
+                vencedor = jogadores[i]
+                ver = 0
+            if(pontos[jogadores[i]] == maior):
+                ver = 1
+        print()
+        if(ver == 0):
+            print("Parabens {0}, foi consedido a você o poder de mudar o mundo".format(vencedor.title()))
+        else:
+            print("Empatou, infelizmente o mundo continua em trevas ")
+
 
 
 
