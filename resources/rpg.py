@@ -70,23 +70,42 @@ if(quer_jogar.lower() == "sim"):
     print("******************************************************************************************************")
 
     escolhas = {}
+    pontos = {}
+    vida = {}
 
-    for i  in range(len(jogadores)):
+    poderes = {
+        lista_personagens[0] : ["Fisico", "Massacre", "Desafio da morte", "Carga concentrada"],
+        lista_personagens[1] : ["Fisico", "Bola de fogo", "Relampago", "Ultra colapso"],
+        lista_personagens[2] : ["Fisico", "Flexa critica" ,"Flexa envenenada", "Flexa da morte"],
+        lista_personagens[3] : ["Fisico", "Cajado de veneno", "Chuva de gelo", "Morte lenta"]
+    }
+
+
+    for i in range(len(jogadores)):
         numero_lutador = int(input("{0}, escolha um numero referente ao perssonagem(1 a 4): ".format(jogadores[i].title())))
         while(numero_lutador < 1 or numero_lutador > 4):
             numero_lutador = int(input("{0}, escolha um numero entre(1 a 4): ".format(jogadores[i].title())))
         if(numero_lutador == 1):
             lutador = lista_personagens[0]
             escolhas[jogadores[i]] = lutador
+            pontos[jogadores[i]] = 0
+            vida[jogadores[i]] = 100
         elif (numero_lutador == 2):
             lutador = lista_personagens[2]
             escolhas[jogadores[i]] = lutador
+            pontos[jogadores[i]] = 0
+            vida[jogadores[i]] = 100
         elif (numero_lutador == 3):
             lutador = lista_personagens[1]
             escolhas[jogadores[i]] = lutador
+            pontos[jogadores[i]] = 0
+            vida[jogadores[i]] = 100
         elif (numero_lutador == 4):
             lutador = lista_personagens[3]
             escolhas[jogadores[i]] = lutador
+            pontos[jogadores[i]] = 0
+            vida[jogadores[i]] = 100
+
 
     print()
     for i in range(len(jogadores)):
@@ -112,6 +131,71 @@ if(quer_jogar.lower() == "sim"):
         print("*                                          Tabela Lutas                                              *")
         print("******************************************************************************************************")
         print(" luta 1                                {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[1].title(),escolhas[jogadores[1]]))
+
+        print()
+        print("Batalha - {0}({1}) x {2}({3})".format(jogadores[0].title(),escolhas[jogadores[0]],jogadores[1].title(),escolhas[jogadores[1]]))
+        count = 1
+
+        print("Batalha {0}".format(count))
+        print("Lutem!")
+
+        poder_jogador_um = poderes[escolhas[jogadores[0]]]
+        poder_jogador_dois = poderes[escolhas[jogadores[1]]]
+
+        gurdar_ataque_jogador_um = []
+        gurdar_ataque_jogador_dois = []
+
+        print()
+
+
+        while(vida[jogadores[0]] != 0 or vida[jogadores[1]] != 0):
+
+            print("------------------------------------------------------------------------------------------------------")
+            print("Escolha uma opção de ataque para causar dano ao {0}".format(escolhas[jogadores[1]].title()))
+            print()
+            print("1){0} 2){1} 3){2} 4){3} ".format(poder_jogador_um[0],poder_jogador_um[1],poder_jogador_um[2],poder_jogador_um[3]))
+            print()
+
+            ataque_jogador_um = int(input("{0} digite um numero referente ao ataque: ".format(jogadores[0].title())))
+            ataque_jogador_um = ataque_jogador_um - 1
+
+            while (ataque_jogador_um in gurdar_ataque_jogador_um):
+                ataque_jogador_um = int(input("{0} digite um ataque disonivel: ".format(jogadores[0].title())))
+                ataque_jogador_um = ataque_jogador_um - 1
+
+            if (ataque_jogador_um > 0 and "utilizado" not in poder_jogador_um[ataque_jogador_um]):
+                gurdar_ataque_jogador_um.append(ataque_jogador_um)
+                poder_jogador_um.insert(ataque_jogador_um,"utilizado")
+
+
+            print()
+
+            print("Escolha uma opção de ataque para causar dano ao {0}".format(escolhas[jogadores[0]].title()))
+            print()
+            print("1){0} 2){1} 3){2} 4){3} ".format(poder_jogador_dois[0],poder_jogador_dois[1],poder_jogador_dois[2],poder_jogador_dois[3]))
+            print()
+
+            ataque_jogador_dois = int(input("{0} digite um numero referente ao ataque: ".format(jogadores[1].title())))
+            ataque_jogador_dois = ataque_jogador_dois - 1
+
+            while(ataque_jogador_dois in gurdar_ataque_jogador_dois):
+                ataque_jogador_dois = int(input("{0} digite um ataque disonivel: ".format(jogadores[1].title())))
+                ataque_jogador_dois = ataque_jogador_dois - 1
+
+            if(ataque_jogador_dois > 0 and "utilizado" not in poder_jogador_dois[ataque_jogador_dois]):
+                gurdar_ataque_jogador_dois.append(ataque_jogador_dois)
+                poder_jogador_dois.insert(ataque_jogador_dois,"utilizado")
+
+            print("------------------------------------------------------------------------------------------------------")
+            print()
+
+
+
+
+
+
+
+
 
     elif(numero_jogadores == 3):
 
