@@ -200,13 +200,16 @@ if(quer_jogar.lower() == "sim"):
             vida_jogador_dois = vida[jogadores[1]]
             dano_critico = 0
 
+
             if(ataque == poder_jogador_um[0]):
                 critico = random.randint(1, 20)
                 if (critico > 18):
                     dano_critico = dano_jogador_um + 10
                     vida[jogadores[1]] = vida_jogador_dois - dano_critico
+                    print("{0} atacou com {1} e causou um dano critico de {2} pontos de vida no inimigo {3}".format(jogadores[0].title(), poder_jogador_um[0], dano_critico,jogadores[1].title()))
                 else:
                     vida[jogadores[1]] = vida_jogador_dois - dano_jogador_um
+                    print("{0} atacou com {1} e causou um dano de {2} pontos de vida no inimigo {3}".format(jogadores[0].title(), poder_jogador_um[0], dano_jogador_um, jogadores[1].title()))
 
 
             if (ataque_jogador_um > 0 and "Utilizado" not in poder_jogador_um[ataque_jogador_um]):
@@ -217,29 +220,36 @@ if(quer_jogar.lower() == "sim"):
                     if (critico > 16):
                         dano_critico = dano_jogador_um + 10
                         vida[jogadores[1]] = vida_jogador_dois - dano_critico
+                        print("{0} atacou com {1} e causou um dano critico de {2} pontos de vida no inimigo {3}".format(jogadores[0].title(), poder_jogador_um[1], dano_critico, jogadores[1].title()))
                     else:
                         vida[jogadores[1]] = vida_jogador_dois - dano_jogador_um
+                        print("{0} atacou com {1} e causou um dano de {2} pontos de vida no inimigo {3}".format(jogadores[0].title(), poder_jogador_um[1], dano_jogador_um, jogadores[1].title()))
 
                 elif (ataque == poder_jogador_um[2]):
                     critico = random.randint(1, 20)
                     if (critico > 12):
                         dano_critico = dano_jogador_um + 10
                         vida[jogadores[1]] = vida_jogador_dois - dano_critico
+                        print("{0} atacou com {1} e causou um dano critico de {2} pontos de vida no inimigo {3}".format(jogadores[0].title(), poder_jogador_um[2], dano_critico, jogadores[1].title()))
                     else:
                         vida[jogadores[1]] = vida_jogador_dois - dano_jogador_um
+                        print("{0} atacou com {1} e causou um dano de {2} pontos de vida no inimigo {3}".format(jogadores[0].title(), poder_jogador_um[2], dano_jogador_um, jogadores[1].title()))
 
                 elif (ataque == poder_jogador_um[3]):
                     critico = random.randint(1, 20)
                     if (critico > 10):
                         dano_critico = dano_jogador_um + 10
                         vida[jogadores[1]] = vida_jogador_dois - dano_critico
+                        print("{0} atacou com {1} e causou um dano critico de {2} pontos de vida no inimigo {3}".format(jogadores[0].title(), poder_jogador_um[3], dano_critico, jogadores[1].title()))
                     else:
                         vida[jogadores[1]] = vida_jogador_dois - dano_jogador_um
+                        print("{0} atacou com {1} e causou um dano de {2} pontos de vida no inimigo {3}".format(jogadores[0].title(), poder_jogador_um[3], dano_jogador_um, jogadores[1].title()))
 
                 poder_jogador_um[ataque_jogador_um] = "Utilizado"
 
 
             print()
+            print("------------------------------------------------------------------------------------------------------")
 
             print("Escolha uma opção de ataque para causar dano ao {0}".format(escolhas[jogadores[0]].title()))
             print()
@@ -259,13 +269,16 @@ if(quer_jogar.lower() == "sim"):
             vida_jogador_um = vida[jogadores[0]]
             dano_critico = 0
 
+
             if(ataque == poder_jogador_dois[0]):
                 critico = random.randint(1, 20)
                 if (critico > 18):
                     dano_critico = dano_jogador_um + 10
                     vida[jogadores[0]] = vida_jogador_um - dano_critico
+                    print("{0} atacou com {1} e causou um dano critico de {2} pontos de vida no inimigo {3}".format(jogadores[1].title(),poder_jogador_dois[0],dano_critico,jogadores[0].title()))
                 else:
                     vida[jogadores[0]] = vida_jogador_um - dano_jogador_dois
+                    print("{0} atacou com {1} e causou um dano de {2} pontos de vida no inimigo {3}".format(jogadores[1].title(), poder_jogador_dois[0], dano_jogador_dois, jogadores[0]))
 
 
             if (ataque_jogador_dois > 0 and "Utilizado" not in poder_jogador_dois[ataque_jogador_dois]):
@@ -276,53 +289,68 @@ if(quer_jogar.lower() == "sim"):
                     if (critico > 16):
                         dano_critico = dano_jogador_um + 10
                         vida[jogadores[0]] = vida_jogador_um - dano_critico
+                        print("{0} atacou com {1} e causou um dano critico de {2} pontos de vida no inimigo {3}".format(jogadores[1].title(), poder_jogador_dois[1], dano_critico, jogadores[0].title()))
                     else:
                         vida[jogadores[0]] = vida_jogador_um - dano_jogador_dois
+                        print("{0} atacou com {1} e causou um dano de {2} pontos de vida no inimigo {3}".format(jogadores[1].title(), poder_jogador_dois[1], dano_jogador_dois, jogadores[0].title()))
 
                 elif (ataque == poder_jogador_dois[2]):
                     critico = random.randint(1, 20)
                     if (critico > 12):
                         dano_critico = dano_jogador_um + 10
                         vida[jogadores[0]] = vida_jogador_um - dano_critico
+                        print("{0} atacou com {1} e causou um dano critico de {2} pontos de vida no inimigo {3}".format(jogadores[1].title(), poder_jogador_dois[2], dano_critico, jogadores[0].title()))
                     else:
                         vida[jogadores[0]] = vida_jogador_um - dano_jogador_dois
+                        print("{0} atacou com {1} e causou um dano de {2} pontos de vida no inimigo {3}".format(jogadores[1].title(), poder_jogador_dois[3], dano_jogador_dois, jogadores[0].title()))
 
                 elif (ataque == poder_jogador_dois[3]):
                     critico = random.randint(1, 20)
                     if (critico > 10):
                         dano_critico = dano_jogador_um + 10
                         vida[jogadores[0]] = vida_jogador_um - dano_critico
+                        print("{0} atacou com {1} e causou um dano critico de {2} pontos de vida no inimigo {3}".format(jogadores[1].title(), poder_jogador_dois[3], dano_critico, jogadores[0].title()))
                     else:
                         vida[jogadores[0]] = vida_jogador_um - dano_jogador_dois
+                        print("{0} atacou com {1} e causou um dano de {2} pontos de vida no inimigo {3}".format(jogadores[1].title(), poder_jogador_dois[3], dano_jogador_dois, jogadores[0].title()))
 
                 poder_jogador_dois[ataque_jogador_dois] = "Utilizado"
 
             pontos_de_vida_um = vida[jogadores[0]]
             pontos_de_vida_dois = vida[jogadores[1]]
 
-            if(pontos_de_vida_um <= 0 and pontos_de_vida_dois <=0):
+            print("------------------------------------------------------------------------------------------------------")
+            if (pontos_de_vida_um <= 0 and pontos_de_vida_dois <= 0):
+                print("Empatou")
+                print("Jogue novamente para desempatar")
+                poder_jogador_um = poderes[escolhas[jogadores[0]]].split(",")
+                poder_jogador_dois = poderes[escolhas[jogadores[1]]].split(",")
+
+                gurdar_ataque_jogador_um = []
+                gurdar_ataque_jogador_dois = []
+
                 pontos_de_vida_um = 0
                 pontos_de_vida_dois = 0
-                termina = 0
-            if(pontos_de_vida_um <= 0):
+
+                vida[jogadores[0]] = 70
+                vida[jogadores[1]] = 70
+
+                termina = 1
+
+            elif (pontos_de_vida_um <= 0):
                 pontos[jogadores[1]] = 100
                 pontos_de_vida_um = 0
                 termina = 0
-            if (pontos_de_vida_dois <= 0):
+            elif (pontos_de_vida_dois <= 0):
                 pontos[jogadores[0]] = 100
                 pontos_de_vida_dois = 0
                 termina = 0
-
-            print("------------------------------------------------------------------------------------------------------")
-            print()
-            print("Vida {0}: {1} | Vida {2}: {3}".format(jogadores[0].title(),pontos_de_vida_um,jogadores[1].title(),pontos_de_vida_dois))
-            print()
-
+            print("Vida {0}: {1} | Vida {2}: {3}".format(jogadores[0].title(), pontos_de_vida_um, jogadores[1].title(),pontos_de_vida_dois))
         print()
 
         maior = 0
         vencedor = ""
-        ver = 0
+
         for i in range(len(jogadores)):
             maior = pontos[jogadores[i]]
             vencedor = jogadores[i]
@@ -330,15 +358,7 @@ if(quer_jogar.lower() == "sim"):
             if(pontos[jogadores[i]] > maior):
                 maior = pontos[jogadores[i]]
                 vencedor = jogadores[i]
-                ver = 0
-            if(pontos[jogadores[i]] == maior):
-                ver = 1
-        print()
-        if(ver == 0):
-            print("Parabens {0}, foi consedido a você o poder de mudar o mundo".format(vencedor.title()))
-        else:
-            print("Empatou, infelizmente o mundo continua em trevas ")
-
+        print("Parabens {0},foi consedido a você a tentativa de mudar o mundo".format(vencedor.title()))
 
 
 
