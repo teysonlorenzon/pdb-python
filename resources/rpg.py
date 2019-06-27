@@ -20,9 +20,10 @@ if(quer_jogar.lower() == "sim"):
     print("*                                                                                                    *")
     print("*                       Escolha o numero referente a quatidade de jogadores                          *")
     print("*                                                                                                    *")
+    print("*                                         (1): 1 Jogador                                             *")
     print("*                               (2): 2 Jogadores  (4): 4 Jogadores                                   *")
     print("*                               (3): 3 Jogadores  (5): 5 Jogadores                                   *")
-    print("*                                                                                          (1): Sair *")
+    print("*                                                                                          (6): Sair *")
     print("*----------------------------------------------------------------------------------------------------*")
     print("*                                               Regras                                               *")
     print("* 1) Digite o nome dos jogadores                                                                     *")
@@ -30,15 +31,16 @@ if(quer_jogar.lower() == "sim"):
     print("* 3) Os dois melhores jogadores, se enfrentam na final                                               *")
     print("******************************************************************************************************")
 
-
-    numero_jogadores = int(input("Digite o numero referente a quantidade de jogadores (2 a 5) (1 para sair): "))
+    numero_jogadores = int(input("Digite o numero referente a quantidade de jogadores (1 a 5) (6 para sair): "))
     while (numero_jogadores < 1 or numero_jogadores > 5):
-        numero_jogadores = int(input("Respeite os numeros do menu (1 a 5): "))
+        numero_jogadores = int(input("Respeite os numeros do menu (1 a 6): "))
 
     jogadores = []
 
     if (numero_jogadores == 1):
-        print("Jogo encerrado!")
+            jogador = input("Jogador 1: ")
+            jogadores.append(jogador.lower())
+
 
     elif (numero_jogadores == 2):
         for i in range(1,3):
@@ -60,6 +62,9 @@ if(quer_jogar.lower() == "sim"):
         for i in range(1,6):
             jogador = input("Jogador {0}: ".format(i))
             jogadores.append(jogador.lower())
+    elif (numero_jogadores == 6):
+        print("Fim de Jogo")
+
 
 
     print()
@@ -99,8 +104,12 @@ if(quer_jogar.lower() == "sim"):
         "Flexa da Morte": 10,
         "Cajado de Veneno": 10,
         "Chuva de Gelo": 10,
-        "Morte Lenta": 10
+        "Morte Lenta": 10,
+        "Destruidor de Mundos": 10,
+        "Demolição Paranormal": 10,
+        "Mundo Abominavel": 10
     }
+
 
 
     for i in range(len(jogadores)):
@@ -633,6 +642,7 @@ if(quer_jogar.lower() == "sim"):
 
         maior = 0
         vencedor = ""
+        pos_venc = 0
         print("------------------------------------------------------------------------------------------------------")
         print("Pontuação Final")
         print()
@@ -643,46 +653,274 @@ if(quer_jogar.lower() == "sim"):
             if (pontos[jogadores[i]] > maior):
                 maior = pontos[jogadores[i]]
                 vencedor = jogadores[i]
-        print()
-        print("Parabens {0},foi consedido o oder sagrado capaz de mudar o mundo".format(vencedor.title()))
+                pos_venc = i
 
+
+        print()
+        print("Parabens {0},foi consedido o poder sagrado capaz de mudar o mundo".format(vencedor.title()))
+        print("------------------------------------------------------------------------------------------------------")
         print()
         print(" Passou um ano após a batalha final, a qual o guerreiro sagrado foi escolhido diante de muitas")
         print("batalhas sangrentas, e agora ele ira enfrentar o causador de todo o mal, o poderoso e grandiozo")
         print("rei do terror Tarzariuz")
-        print()
         print(" O gurreiro sagrado vai até o covil de Tarzariuz, e inicia uma batalha pela esperança da humanidade")
         print()
         print("******************************************************************************************************")
         print()
-        print("Batalha Final - Tarzariuz x {2}({3})".format(vencedor.title(), escolhas[vencedor]))
+        print("Batalha Final - Tarzariuz x {0}({1})".format(vencedor.title(), escolhas[vencedor]))
         print("Lutem!")
         print()
 
+        poder_final = poderes[escolhas[jogadores[pos_venc]]]
+        batalha_final(pos_venc,poder_final)
 
 
 
-
-    def batalha_final():
+    def batalha_final(x,poder_final):
         vida_tarzarius = 70
+        vida[jogadores[x]] = 70
 
 
+        poder_jogador_um = poder_final.split(",")
+        poder_jogador_dois = "Fisico,Destruidor de Mundos,Demolição Paranormal,Mundo Abominavel".split(",")
+
+        gurdar_ataque_jogador_um = []
+        gurdar_ataque_jogador_dois = []
+
+        pontos_de_vida_um = 1
+
+        termina = 1
+
+        print()
+
+        while (termina != 0):
+            print(
+                "------------------------------------------------------------------------------------------------------")
+            print("Escolha uma opção de ataque para causar dano ao Tarzarius")
+            print()
+            print("1){0} 2){1} 3){2} 4){3} ".format(poder_jogador_um[0], poder_jogador_um[1], poder_jogador_um[2],
+                                                    poder_jogador_um[3]))
+            print()
+
+            ataque_jogador_um = int(input("{0} digite um numero referente ao ataque: ".format(jogadores[x].title())))
+            ataque_jogador_um = ataque_jogador_um - 1
+
+            while (ataque_jogador_um in gurdar_ataque_jogador_um):
+                ataque_jogador_um = int(input("{0} digite um ataque disponivel: ".format(jogadores[x].title())))
+                ataque_jogador_um = ataque_jogador_um - 1
+
+            ataque = poder_jogador_um[ataque_jogador_um]
+
+            dano_jogador_um = dano[ataque]
+            vida_jogador_dois = vida_tarzarius
+            dano_critico = 0
+
+            if (ataque == poder_jogador_um[0]):
+                critico = random.randint(1, 20)
+                if (critico > 18):
+                    dano_critico = dano_jogador_um + 10
+                    vida_tarzarius = vida_jogador_dois - dano_critico
+                    print("{0} atacou com {1} e causou um dano critico de {2} pontos de vida no inimigo Tarzarius".format(
+                        jogadores[x].title(), poder_jogador_um[0], dano_critico))
+                else:
+                    vida_tarzarius = vida_jogador_dois - dano_jogador_um
+                    print("{0} atacou com {1} e causou um dano de {2} pontos de vida no inimigo Tarzarius".format(
+                        jogadores[x].title(), poder_jogador_um[0], dano_jogador_um))
+
+            if (ataque_jogador_um > 0 and "Utilizado" not in poder_jogador_um[ataque_jogador_um]):
+                gurdar_ataque_jogador_um.append(ataque_jogador_um)
+
+                if (ataque == poder_jogador_um[1]):
+                    critico = random.randint(1, 20)
+                    if (critico > 16):
+                        dano_critico = dano_jogador_um + 10
+                        vida_tarzarius = vida_jogador_dois - dano_critico
+                        print(
+                            "{0} atacou com {1} e causou um dano critico de {2} pontos de vida no inimigo Tarzarius".format(
+                                jogadores[x].title(), poder_jogador_um[0], dano_critico))
+                    else:
+                        vida_tarzarius = vida_jogador_dois - dano_jogador_um
+                        print("{0} atacou com {1} e causou um dano de {2} pontos de vida no inimigo Tarzarius".format(
+                            jogadores[x].title(), poder_jogador_um[0], dano_jogador_um))
+
+                elif (ataque == poder_jogador_um[2]):
+                    critico = random.randint(1, 20)
+                    if (critico > 12):
+                        dano_critico = dano_jogador_um + 10
+                        vida_tarzarius = vida_jogador_dois - dano_critico
+                        print(
+                            "{0} atacou com {1} e causou um dano critico de {2} pontos de vida no inimigo Tarzarius".format(
+                                jogadores[x].title(), poder_jogador_um[0], dano_critico))
+                    else:
+                        vida_tarzarius = vida_jogador_dois - dano_jogador_um
+                        print("{0} atacou com {1} e causou um dano de {2} pontos de vida no inimigo Tarzarius".format(
+                            jogadores[x].title(), poder_jogador_um[0], dano_jogador_um))
+
+                elif (ataque == poder_jogador_um[3]):
+                    critico = random.randint(1, 20)
+                    if (critico > 10):
+                        dano_critico = dano_jogador_um + 10
+                        vida_tarzarius = vida_jogador_dois - dano_critico
+                        print(
+                            "{0} atacou com {1} e causou um dano critico de {2} pontos de vida no inimigo Tarzarius".format(
+                                jogadores[x].title(), poder_jogador_um[0], dano_critico))
+                    else:
+                        vida_tarzarius = vida_jogador_dois - dano_jogador_um
+                        print("{0} atacou com {1} e causou um dano de {2} pontos de vida no inimigo Tarzarius".format(
+                            jogadores[x].title(), poder_jogador_um[0], dano_jogador_um))
+
+                poder_jogador_um[ataque_jogador_um] = "Utilizado"
+
+            print()
+            print(
+                "------------------------------------------------------------------------------------------------------")
+
+            print("Tarzarius atacou o {0}".format(escolhas[jogadores[x]].title()))
+            print()
+            print("1){0} 2){1} 3){2} 4){3} ".format(poder_jogador_dois[0], poder_jogador_dois[1], poder_jogador_dois[2],
+                                                    poder_jogador_dois[3]))
+            print()
+
+            ataque_jogador_dois = jogadas_de_tarzarius()
+            ataque_jogador_dois = ataque_jogador_dois - 1
+
+            while (ataque_jogador_dois in gurdar_ataque_jogador_dois):
+                ataque_jogador_dois = jogadas_de_tarzarius()
+                ataque_jogador_dois = ataque_jogador_dois - 1
+
+            ataque = poder_jogador_dois[ataque_jogador_dois]
+
+            dano_jogador_dois = dano[ataque]
+            vida_jogador_um = vida[jogadores[x]]
+            dano_critico = 0
+
+            if (ataque == poder_jogador_dois[0]):
+                critico = random.randint(1, 20)
+                if (critico > 18):
+                    dano_critico = dano_jogador_um + 10
+                    vida[jogadores[x]] = vida_jogador_um - dano_critico
+                    print("Tarzarius atacou com {0} e causou um dano critico de {1} pontos de vida no inimigo {2}".format(
+                        poder_jogador_dois[0], dano_critico, jogadores[x].title()))
+                else:
+                    vida[jogadores[x]] = vida_jogador_um - dano_jogador_dois
+                    print("Tarzarius atacou com {0} e causou um dano de {1} pontos de vida no inimigo {2}".format(
+                        poder_jogador_dois[0], dano_jogador_dois, jogadores[x]))
+
+            if (ataque_jogador_dois > 0 and "Utilizado" not in poder_jogador_dois[ataque_jogador_dois]):
+                gurdar_ataque_jogador_dois.append(ataque_jogador_dois)
+
+                if (ataque == poder_jogador_dois[1]):
+                    critico = random.randint(1, 20)
+                    if (critico > 16):
+                        dano_critico = dano_jogador_um + 10
+                        vida[jogadores[x]] = vida_jogador_um - dano_critico
+                        print(
+                            "Tarzarius atacou com {0} e causou um dano critico de {1} pontos de vida no inimigo {2}".format(
+                                poder_jogador_dois[0], dano_critico, jogadores[x].title()))
+                    else:
+                        vida[jogadores[x]] = vida_jogador_um - dano_jogador_dois
+                        print("Tarzarius atacou com {0} e causou um dano de {1} pontos de vida no inimigo {2}".format(
+                            poder_jogador_dois[0], dano_jogador_dois, jogadores[x]))
+
+                elif (ataque == poder_jogador_dois[2]):
+                    critico = random.randint(1, 20)
+                    if (critico > 12):
+                        dano_critico = dano_jogador_um + 10
+                        vida[jogadores[x]] = vida_jogador_um - dano_critico
+                        print(
+                            "Tarzarius atacou com {0} e causou um dano critico de {1} pontos de vida no inimigo {2}".format(
+                                poder_jogador_dois[0], dano_critico, jogadores[x].title()))
+                    else:
+                        vida[jogadores[x]] = vida_jogador_um - dano_jogador_dois
+                        print("Tarzarius atacou com {0} e causou um dano de {1} pontos de vida no inimigo {2}".format(
+                            poder_jogador_dois[0], dano_jogador_dois, jogadores[x]))
+
+                elif (ataque == poder_jogador_dois[3]):
+                    critico = random.randint(1, 20)
+                    if (critico > 10):
+                        dano_critico = dano_jogador_um + 10
+                        vida[jogadores[x]] = vida_jogador_um - dano_critico
+                        print(
+                            "Tarzarius atacou com {0} e causou um dano critico de {1} pontos de vida no inimigo {2}".format(
+                                poder_jogador_dois[0], dano_critico, jogadores[x].title()))
+                    else:
+                        vida[jogadores[x]] = vida_jogador_um - dano_jogador_dois
+                        print("Tarzarius atacou com {0} e causou um dano de {1} pontos de vida no inimigo {2}".format(
+                            poder_jogador_dois[0], dano_jogador_dois, jogadores[x]))
+
+                poder_jogador_dois[ataque_jogador_dois] = "Utilizado"
+
+            pontos_de_vida_um = vida[jogadores[x]]
+            pontos_de_vida_dois = vida_tarzarius
+
+            print(
+                "------------------------------------------------------------------------------------------------------")
+            if (pontos_de_vida_um <= 0 and pontos_de_vida_dois <= 0):
+                print("Empatou")
+                print("Jogue novamente para desempatar")
+                poder_jogador_um = poderes[escolhas[jogadores[x]]].split(",")
+                poder_jogador_dois = "Fisico,Destruidor de Mundos,Demolição Paranormal,Mundo Abominavel".split(",")
+
+                gurdar_ataque_jogador_um = []
+                gurdar_ataque_jogador_dois = []
+
+                pontos_de_vida_um = 0
+                pontos_de_vida_dois = 0
+
+                vida[jogadores[x]] = 70
+                vida_tarzarius = 70
+
+                termina = 1
+
+            elif (pontos_de_vida_um <= 0):
+                vida[jogadores[x]] = 70
+                vida_tarzarius = 70
+                pontos_de_vida_um = 0
+                termina = 0
+            elif (pontos_de_vida_dois <= 0):
+                vida[jogadores[x]] = 70
+                vida_tarzarius = 70
+                pontos_de_vida_dois = 0
+                termina = 0
+
+            print("Vida {0}: {1} | Vida {2}: {3}".format(jogadores[x].title(), pontos_de_vida_um, "tarzarius".title(),
+                                                         pontos_de_vida_dois))
+        print()
+
+
+    ataques_proibidos = []
 
     def jogadas_de_tarzarius():
-        possibilidades = [0,1,2,3]
-        i = 3
-        randon_ataque = random.randint(0,i)
-        if(randon_ataque == 0):
-            ataque_tarzarius = possibilidades[randon_ataque]
+        randon_ataque = random.randint(1,4)
+        ataque_tarzarius = randon_ataque
 
-        else:
+        while(randon_ataque in ataques_proibidos):
+            randon_ataque = random.randint(1, 4)
             ataque_tarzarius = randon_ataque
-            possibilidades.remove(randon_ataque)
-            i -= 1
 
-        return ataque_tarzarius
+        if (randon_ataque > 1):
+            ataques_proibidos.append(ataque_tarzarius)
+
+        return int(ataque_tarzarius)
 
 
+
+    if( numero_jogadores == 1):
+        print("------------------------------------------------------------------------------------------------------")
+        print()
+        print(" Passou um ano após a batalha final, a qual o guerreiro sagrado foi escolhido diante de muitas")
+        print("batalhas sangrentas, e agora ele ira enfrentar o causador de todo o mal, o poderoso e grandiozo")
+        print("rei do terror Tarzariuz")
+        print(" O gurreiro sagrado vai até o covil de Tarzariuz, e inicia uma batalha pela esperança da humanidade")
+        print()
+        print("******************************************************************************************************")
+        print()
+        print("Batalha Final - Tarzariuz x {0}({1})".format(jogadores[0].title(), escolhas[jogadores[0]]))
+        print("Lutem!")
+        print()
+
+        poder_final = poderes[escolhas[jogadores[0]]]
+        batalha_final(0, poder_final)
 
     if(numero_jogadores == 2):
 
