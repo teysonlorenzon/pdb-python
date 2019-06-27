@@ -644,8 +644,43 @@ if(quer_jogar.lower() == "sim"):
                 maior = pontos[jogadores[i]]
                 vencedor = jogadores[i]
         print()
-        print("Parabens {0},foi consedido a você a tentativa de mudar o mundo".format(vencedor.title()))
+        print("Parabens {0},foi consedido o oder sagrado capaz de mudar o mundo".format(vencedor.title()))
 
+        print()
+        print(" Passou um ano após a batalha final, a qual o guerreiro sagrado foi escolhido diante de muitas")
+        print("batalhas sangrentas, e agora ele ira enfrentar o causador de todo o mal, o poderoso e grandiozo")
+        print("rei do terror Tarzariuz")
+        print()
+        print(" O gurreiro sagrado vai até o covil de Tarzariuz, e inicia uma batalha pela esperança da humanidade")
+        print()
+        print("******************************************************************************************************")
+        print()
+        print("Batalha Final - Tarzariuz x {2}({3})".format(vencedor.title(), escolhas[vencedor]))
+        print("Lutem!")
+        print()
+
+
+
+
+
+    def batalha_final():
+        vida_tarzarius = 70
+
+
+
+    def jogadas_de_tarzarius():
+        possibilidades = [0,1,2,3]
+        i = 3
+        randon_ataque = random.randint(0,i)
+        if(randon_ataque == 0):
+            ataque_tarzarius = possibilidades[randon_ataque]
+
+        else:
+            ataque_tarzarius = randon_ataque
+            possibilidades.remove(randon_ataque)
+            i -= 1
+
+        return ataque_tarzarius
 
 
 
