@@ -25,7 +25,7 @@ while(finaliza == 1):
     print("*                                         (1): 1 Jogador                                             *")
     print("*                               (2): 2 Jogadores  (4): 4 Jogadores                                   *")
     print("*                               (3): 3 Jogadores  (5): 5 Jogadores                                   *")
-    print("*                                                                                          (6): Sair *")
+    print("*(6): Pontuação dos Jogadores                                                              (7): Sair *")
     print("*----------------------------------------------------------------------------------------------------*")
     print("*                                               Regras                                               *")
     print("* 1) Digite o nome dos jogadores                                                                     *")
@@ -36,10 +36,20 @@ while(finaliza == 1):
     print("******************************************************************************************************")
 
     numero_jogadores = int(input("Digite o numero referente a quantidade de jogadores (1 a 5) (6 para sair): "))
-    while (numero_jogadores < 1 or numero_jogadores > 6):
+    while (numero_jogadores < 1 or numero_jogadores > 7):
         numero_jogadores = int(input("Respeite os numeros do menu (1 a 6): "))
 
     jogadores = []
+
+    if (numero_jogadores == 6):
+        arquivo = open("historico.txt", 'r')  # Abra o arquivo (leitura)
+        conteudo = arquivo.readlines()
+        for i in range(len(conteudo)):
+            print(conteudo[i])
+    print()
+    numero_jogadores = int(input("Digite o numero referente a quantidade de jogadores (1 a 5) (6 para Pontuação) (7 para sair): "))
+
+
 
     if (numero_jogadores == 1):
             jogador = input("Jogador 1: ")
@@ -66,7 +76,9 @@ while(finaliza == 1):
         for i in range(1,6):
             jogador = input("Jogador {0}: ".format(i))
             jogadores.append(jogador.lower())
-    elif (numero_jogadores == 6):
+
+
+    elif (numero_jogadores == 7):
         print("Fim de Jogo")
         break
 
@@ -421,6 +433,7 @@ while(finaliza == 1):
             print()
 
 
+    ataques_proibidos = []
 
     def criar_senario_luta_individual(x,y,luta):
 
@@ -863,6 +876,7 @@ while(finaliza == 1):
             if (pontos_de_vida_um <= 0 and pontos_de_vida_dois <= 0):
                 print("Empatou")
                 print("Jogue novamente para desempatar")
+
                 poder_jogador_um = poderes[escolhas[jogadores[x]]].split(",")
                 poder_jogador_dois = "Fisico,Destruidor de Mundos,Demolição Paranormal,Mundo Abominavel".split(",")
 
@@ -955,11 +969,6 @@ while(finaliza == 1):
             print("------------------------------------------------------------------------------------------------------")
 
 
-
-
-
-
-    ataques_proibidos = []
 
     def jogadas_de_tarzarius():
         randon_ataque = random.randint(1,4)
@@ -1193,37 +1202,35 @@ while(finaliza == 1):
         print()
         print()
         finaliza == 1
-        arquivo = open("historico.txt", "w")
-        ler = open("historico.txt", "r")
-        arquivo.write("------------------------------")
-        texto = ler.readlines()
-        arquivo.write(texto)
-        arquivo.write("\n")
+        arquivo = open("historico.txt", 'r')  # Abra o arquivo (leitura)
+        conteudo = arquivo.readlines()
+        conteudo.append("\n")
+        conteudo.append("------------------------------")
+        conteudo.append("\n")
         for i in range(len(jogadores)):
             stri = jogadores[i] + ": " + str(pontos[jogadores[i]])
-            arquivo.write(stri)
-        arquivo.write("\n")
-        arquivo.write("------------------------------")
-        arquivo.close()
-        ler.close()
+            conteudo.append(stri)
+        conteudo.append("\n")
+        conteudo.append("------------------------------")
+        arquivo = open("historico.txt", "w")
+        for i in range(len(conteudo)):
+            arquivo.write(conteudo[i])
     else:
         print("Fim de Jogo")
         finaliza == 0
-        ler = open("historico.txt", "r")
-        texto = ler.read()
-        ler.close()
-        arquivo = open("historico.txt", "w")
-        arquivo.write(texto)
-        arquivo.write("------------------------------")
-
-        print(texto)
-        arquivo.write(texto)
-        arquivo.write("\n")
+        arquivo = open("historico.txt", 'r')  # Abra o arquivo (leitura)
+        conteudo = arquivo.readlines()
+        conteudo.append("\n")
+        conteudo.append("------------------------------")
+        conteudo.append("\n")
         for i in range(len(jogadores)):
             stri = jogadores[i] + ": " + str(pontos[jogadores[i]])
-            arquivo.write(stri)
-        arquivo.write("\n")
-        arquivo.write("------------------------------")
+            conteudo.append(stri)
+        conteudo.append("\n")
+        conteudo.append("------------------------------")
+        arquivo = open("historico.txt", "w")
+        for i in range(len(conteudo)):
+            arquivo.write(conteudo[i])
         arquivo.close()
 
         break
