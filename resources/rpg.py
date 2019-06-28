@@ -31,6 +31,8 @@ while(finaliza == 1):
     print("* 1) Digite o nome dos jogadores                                                                     *")
     print("* 2) Escolha os personagens                                                                          *")
     print("* 3) Os dois melhores jogadores, se enfrentam na final                                               *")
+    print("* 4) O ganhador da luta final enfrenta o boss                                                        *")
+    print("* 5) Se tiver um personagem irá direto contra o boss                                                 *")
     print("******************************************************************************************************")
 
     numero_jogadores = int(input("Digite o numero referente a quantidade de jogadores (1 a 5) (6 para sair): "))
@@ -872,6 +874,7 @@ while(finaliza == 1):
 
                 vida[jogadores[x]] = 70
                 vida_tarzarius = 70
+                ataques_proibidos = []
 
                 termina = 1
 
@@ -1190,9 +1193,39 @@ while(finaliza == 1):
         print()
         print()
         finaliza == 1
+        arquivo = open("historico.txt", "w")
+        ler = open("historico.txt", "r")
+        arquivo.write("------------------------------")
+        texto = ler.readlines()
+        arquivo.write(texto)
+        arquivo.write("\n")
+        for i in range(len(jogadores)):
+            stri = jogadores[i] + ": " + str(pontos[jogadores[i]])
+            arquivo.write(stri)
+        arquivo.write("\n")
+        arquivo.write("------------------------------")
+        arquivo.close()
+        ler.close()
     else:
         print("Fim de Jogo")
         finaliza == 0
+        ler = open("historico.txt", "r")
+        texto = ler.read()
+        ler.close()
+        arquivo = open("historico.txt", "w")
+        arquivo.write(texto)
+        arquivo.write("------------------------------")
+
+        print(texto)
+        arquivo.write(texto)
+        arquivo.write("\n")
+        for i in range(len(jogadores)):
+            stri = jogadores[i] + ": " + str(pontos[jogadores[i]])
+            arquivo.write(stri)
+        arquivo.write("\n")
+        arquivo.write("------------------------------")
+        arquivo.close()
+
         break
 
 
