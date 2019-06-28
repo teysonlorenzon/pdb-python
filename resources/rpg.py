@@ -3,12 +3,14 @@ import random
 #menu Principal
 
 quer_jogar = input("Deseja iniciar o jogo King's Game? (sim/nao): ")
-
-
-
-
-
 if(quer_jogar.lower() == "sim"):
+    finaliza = 1
+else:
+    finaliza = 0
+
+
+
+while(finaliza == 1):
 
     personagens = open("personagens.txt", "r")
     lista_personagens = personagens.read().split("\n")
@@ -32,7 +34,7 @@ if(quer_jogar.lower() == "sim"):
     print("******************************************************************************************************")
 
     numero_jogadores = int(input("Digite o numero referente a quantidade de jogadores (1 a 5) (6 para sair): "))
-    while (numero_jogadores < 1 or numero_jogadores > 5):
+    while (numero_jogadores < 1 or numero_jogadores > 6):
         numero_jogadores = int(input("Respeite os numeros do menu (1 a 6): "))
 
     jogadores = []
@@ -64,6 +66,7 @@ if(quer_jogar.lower() == "sim"):
             jogadores.append(jogador.lower())
     elif (numero_jogadores == 6):
         print("Fim de Jogo")
+        break
 
 
 
@@ -910,8 +913,15 @@ if(quer_jogar.lower() == "sim"):
             print("                                 /_______________\  ")
             print()
             print("                                Pontos: {0}".format(pontos[nome_jogador]))
+
+            print()
+            print("------------------------------------------------------------------------------------------------------")
+
+
+
+
         else:
-            print("Você não foi capaz de vencer o poderoso Tarzarius")
+            print("{0} não foi capaz de vencer o poderoso Tarzarius".format(nome_jogador.title()))
             print()
             print("                            ,--.   ")
             print("                           {    }  ")
@@ -938,6 +948,12 @@ if(quer_jogar.lower() == "sim"):
             print("       '-_~-,       ` `   ./`      ")
             print("          `'{_            )        ")
             print("              ^^\..___,.--`        ")
+            print()
+            print("------------------------------------------------------------------------------------------------------")
+
+
+
+
 
 
     ataques_proibidos = []
@@ -1133,37 +1149,51 @@ if(quer_jogar.lower() == "sim"):
 
 
 
-if(numero_jogadores > 2):
-    maior = pontos[jogadores[0]]
-    ganhador_um = 0
-    ganhador_dois = 0
-    tirar = ""
+    if(numero_jogadores > 2):
+        maior = pontos[jogadores[0]]
+        ganhador_um = 0
+        ganhador_dois = 0
+        tirar = ""
 
-    print("------------------------------------------------------------------------------------------------------")
-    print("Pontuação Final")
-    print()
-    for i in range(len(jogadores)):
-        print("{0}:{1} pontos".format(jogadores[i].title(),pontos[jogadores[i]]))
+        print("------------------------------------------------------------------------------------------------------")
+        print("Pontuação Final")
+        print()
+        for i in range(len(jogadores)):
+            print("{0}:{1} pontos".format(jogadores[i].title(),pontos[jogadores[i]]))
 
-    for i in range(len(jogadores)):
-        if(pontos[jogadores[i]] >= maior):
-            maior = pontos[jogadores[i]]
-            ganhador_um = i
-            tirar = jogadores[i]
+        for i in range(len(jogadores)):
+            if(pontos[jogadores[i]] >= maior):
+                maior = pontos[jogadores[i]]
+                ganhador_um = i
+                tirar = jogadores[i]
 
-    guarda_pontos_ante = maior
-    pontos[tirar] = 0
-    maior = 0
+        guarda_pontos_ante = maior
+        pontos[tirar] = 0
+        maior = 0
 
-    for i in range(len(jogadores)):
-        if (pontos[jogadores[i]] >= maior):
-            maior = pontos[jogadores[i]]
-            ganhador_dois = i
+        for i in range(len(jogadores)):
+            if (pontos[jogadores[i]] >= maior):
+                maior = pontos[jogadores[i]]
+                ganhador_dois = i
 
-    pontos[tirar] = guarda_pontos_ante
+        pontos[tirar] = guarda_pontos_ante
 
 
-    criar_senario_luta_individual(ganhador_um,ganhador_dois,"final")
+        criar_senario_luta_individual(ganhador_um,ganhador_dois,"final")
+
+    jogar_novamente = input("Jogar Novamente? (sim/nao): ")
+    if (jogar_novamente.lower() == "sim"):
+        print(
+            "------------------------------------------------------------------------------------------------------")
+        print()
+        print()
+        print()
+        print()
+        finaliza == 1
+    else:
+        print("Fim de Jogo")
+        finaliza == 0
+        break
 
 
 
