@@ -674,7 +674,7 @@ if(quer_jogar.lower() == "sim"):
         poder_final = poderes[escolhas[jogadores[pos_venc]]]
         batalha_final(pos_venc,poder_final)
 
-
+    game_over_boolean = False
 
     def batalha_final(x,poder_final):
         vida_tarzarius = 70
@@ -874,11 +874,15 @@ if(quer_jogar.lower() == "sim"):
 
             elif (pontos_de_vida_um <= 0):
                 vida[jogadores[x]] = 70
+                game_over_boolean = False
                 vida_tarzarius = 70
                 pontos_de_vida_um = 0
+
                 termina = 0
             elif (pontos_de_vida_dois <= 0):
                 vida[jogadores[x]] = 70
+                pontos[jogadores[x]] = pontos[jogadores[x]] + 1000
+                game_over_boolean = True
                 vida_tarzarius = 70
                 pontos_de_vida_dois = 0
                 termina = 0
@@ -886,6 +890,54 @@ if(quer_jogar.lower() == "sim"):
             print("Vida {0}: {1} | Vida {2}: {3}".format(jogadores[x].title(), pontos_de_vida_um, "tarzarius".title(),
                                                          pontos_de_vida_dois))
         print()
+        game_over(game_over_boolean,jogadores[x])
+
+
+    def game_over(boleana,nome_jogador):
+        if(boleana == True):
+            print("Fantástico {0} você derrotou o poderoso Tarzarius, e conseguio salvar o mundo da escuridão".format(nome_jogador.title()))
+            print()
+            print("                                   .-=========-.   ")
+            print("                                    '-=======-'    ")
+            print("                                   _|         |_    ")
+            print("                                  ((|    1º   |))   ")
+            print("                                   \|         |/    ")
+            print("                                    \__     __/     ")
+            print("                                      _`) (`_       ")
+            print("                                    _/_______\_     ")
+            print("                                   /           \    ")
+            print("                                  / KING'S GAME \   ")
+            print("                                 /_______________\  ")
+            print()
+            print("                                Pontos: {0}".format(pontos[nome_jogador]))
+        else:
+            print("Você não foi capaz de vencer o poderoso Tarzarius")
+            print()
+            print("                            ,--.   ")
+            print("                           {    }  ")
+            print("                           K,   }  ")
+            print("                          /  ~Y`   ")
+            print("                     ,   /   /     ")
+            print("                    {_'-K.__/      ")
+            print("                      `/-.__L._    ")
+            print("                      /  ' /`\_}   ")
+            print("                     /  ' /        ")
+            print("             ____   /  ' /         ")
+            print("      ,-'~~~~    ~~/  ' /_         ")
+            print("    ,'             ``~~~  ',       ")
+            print("   (                        Y      ")
+            print("  {                         I      ")
+            print(" {      -                    `,    ")
+            print(" |       ',                   )    ")
+            print(" |        |   ,..__      __. Y     ")
+            print(" |    .,_./  Y ' / ^Y   J   )|     ")
+            print(" \           |' /   |   |   ||     ")
+            print("  \          L_/    . _ (_,.'(     ")
+            print("   \,   ,      ^^""' / |      )    ")
+            print("     \_  \          /,L]     /     ")
+            print("       '-_~-,       ` `   ./`      ")
+            print("          `'{_            )        ")
+            print("              ^^\..___,.--`        ")
 
 
     ataques_proibidos = []
@@ -1112,4 +1164,8 @@ if(numero_jogadores > 2):
 
 
     criar_senario_luta_individual(ganhador_um,ganhador_dois,"final")
+
+
+
+
 
