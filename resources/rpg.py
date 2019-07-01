@@ -35,19 +35,20 @@ while(finaliza == 1):
     print("* 5) Se tiver um personagem irá direto contra o boss                                                 *")
     print("******************************************************************************************************")
 
-    numero_jogadores = int(input("Digite o numero referente a quantidade de jogadores (1 a 5) (6 para sair): "))
+    numero_jogadores = int(input("Digite o numero referente a quantidade de jogadores (1 a 6) (7 para sair): "))
     while (numero_jogadores < 1 or numero_jogadores > 7):
-        numero_jogadores = int(input("Respeite os numeros do menu (1 a 6): "))
+        numero_jogadores = int(input("Respeite os numeros do menu (1 a 7): "))
 
     jogadores = []
 
     if (numero_jogadores == 6):
-        arquivo = open("historico.txt", 'r')  # Abra o arquivo (leitura)
-        conteudo = arquivo.readlines()
-        for i in range(len(conteudo)):
-            print(conteudo[i])
-    print()
-    numero_jogadores = int(input("Digite o numero referente a quantidade de jogadores (1 a 5) (6 para Pontuação) (7 para sair): "))
+        while(numero_jogadores == 6):
+            arquivo = open("historico.txt", 'r')  # Abra o arquivo (leitura)
+            conteudo = arquivo.readlines()
+            for i in range(len(conteudo)):
+                print(conteudo[i])
+            print()
+            numero_jogadores = int(input("Digite o numero referente a quantidade de jogadores (1 a 5) (6 para Pontuação) (7 para sair): "))
 
 
 
@@ -1234,8 +1235,3 @@ while(finaliza == 1):
         arquivo.close()
 
         break
-
-
-
-
-
